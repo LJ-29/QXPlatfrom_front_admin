@@ -1,0 +1,73 @@
+<template>
+   <div>
+      <el-table :data="tableData" stripe style="width: 100%">
+        <el-table-column
+        prop="informId"
+        label="通知id"
+        align="center"
+        width="100"
+      ></el-table-column>
+      <el-table-column
+        prop="role"
+        label="发布者"
+        align="center"
+        width="200"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="information"
+        label="发布内容"
+        align="center"
+        :show-overflow-tooltip="true"
+        width="200"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="time"
+        label="发布时间"
+        align="center"
+        width="150"
+      >
+      </el-table-column>
+      
+      <el-table-column label="操作" align="center">
+        <template slot-scope="scope">
+          <el-button @click="update(scope.$index, scope.row)"
+            >修改</el-button
+          >
+          <el-button @click="del(scope.$index, scope.row.informId)"
+            >删除</el-button
+          >
+        </template></el-table-column
+      ></el-table
+    >
+  </div>
+</template>
+
+<script>
+import {findSystemNoticeAll} from "../api/getData"
+export default {
+data() {
+    return {
+      tableData: [],
+    };
+  },
+  created() {
+    findSystemNoticeAll().then((res) => {
+      this.tableData = res.data.data;
+    });
+  },
+  methods: {
+    update(index, infor) {
+      console.log(infor);
+    },
+    del(index,informId){
+      
+    }
+  },
+}
+</script>
+
+<style>
+
+</style>
